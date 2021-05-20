@@ -17,22 +17,24 @@
             <label for="RNGMax">Maximum</label>
             <input type="text" id="RNGMax">
         </div>
-        <button type="submit" id="submit" onclick="getRandomNumber()">Generate</button>
+        <button type="submit" id="submit" onclick="printAnswer()">Generate</button>
 
         <h3 id="number"></h3>
 </body>
 <script>
-    let Max = document.getElementById("RNGMax").value;
-    let Min = document.getElementById("RNGMin").value;
-    let answer = 1;
 
     function getRandomNumber() {
+        let Max = document.getElementById("RNGMax").value;
+        let Min = document.getElementById("RNGMin").value;
         let getRandom = Math.floor((Math.random() * Max) + Min);
-        printAnswer();
+            while (getRandom > Max || getRandom < Min) {
+                getRandom = Math.floor((Math.random() * Max) + Min);
+            }
+        return getRandom;
     }
 
     function printAnswer() {
-        document.getElementById("number").innerHTML = answer;
+        document.getElementById("number").innerHTML = getRandomNumber();
     }
 </script>
 </html>
